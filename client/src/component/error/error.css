@@ -1,0 +1,37 @@
+.errorPadre{
+    background: linear-gradient(45deg, black, transparent);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+    object-fit: contain;
+    background-size: cover;
+    overflow-y: scroll;
+}
+
+.errorName{
+    display:flex;
+    font-family: cursive;
+}
+
+.imgError{
+    display:flex;
+    border-radius: 2%;
+    border-radius: 15%;
+}
+
+.toHome{
+    padding:2%
+}
+
+.btnError{
+    background-color: #0d4b744d;
+    font-family: cursive;
+    border-radius: 9px;
+    padding: 6px;
+}
+.btnError:hover{
+    cursor: pointer;
+    box-shadow: 0 12px 16px 0 rgb(218, 100, 100), 0 17px 50px 0 rgb(31, 31, 30);
+}

@@ -1,0 +1,8 @@
+.imagCarga{
+    border-radius: 50%;
+    box-shadow: 0 12px 16px 0 rgb(55, 123, 150), 0 17px 50px 0 rgb(146, 179, 192);
+}
+
+.carga{
+    padding-top: 15%;
+}
