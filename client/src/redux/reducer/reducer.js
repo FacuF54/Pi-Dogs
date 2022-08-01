@@ -81,20 +81,20 @@ const rootReducer = (state = initialState, action) => {
 
       filtro.sort(function(a,b){
               if(a.name > b.name){
-                  return 1 //  donde a va a pasar al siguiente index
+                  return 1 
               }
               if(b.name > a.name){
-                  return -1 //  donde b va a pasar al anterior index
+                  return -1 
               }
-              return 0 // no hay cambios
+              return 0 
       }) : filtro.sort(function(a,b){
               if(a.name > b.name){
-                  return -1 // donde a pasa al terior index
+                  return -1
               }
               if(b.name > a.name){
-                  return 1 // donde b pasa al siguiente index
+                  return 1 
               }
-              return 0 // no hay cambios
+              return 0 
           }) 
       return{
         ...state,
@@ -107,7 +107,6 @@ const rootReducer = (state = initialState, action) => {
         let sortWeight = action.payload === 'minToMax'?
                 
         arr.sort(function(a,b){
-            // a.weight.split(/ - /)[0] < a.weight.split(/ - /)[1]? a.weight.split(/ - /)[0] - b.weight.split(/ - /)[0] :
             return a.weight.split(/ - /)[0] - b.weight.split(/ - /)[0]      
 
         }) :

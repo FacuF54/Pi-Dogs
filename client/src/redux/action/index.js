@@ -11,14 +11,15 @@ export const RESET_DETAILS = 'RESET_DETAILS'
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
 
 export const getDogs = () => {
-    return async (dispatch) =>{
+    
+        return async (dispatch) =>{
 
-        const json = await fetch('http://localhost:3001/dogs/').then(res => res.json())
-             return dispatch({
-                 type: GET_DOGS,
-                 payload: json
-             })
-    }
+            const json = await fetch('http://localhost:3001/dogs/').then(res => res.json())
+                 return dispatch({
+                     type: GET_DOGS,
+                     payload: json
+                 })
+        }
 };
 
 export const getName = (name) => async dispatch => {

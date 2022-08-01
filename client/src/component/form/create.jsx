@@ -6,23 +6,38 @@ import './create.css'
 
 
 function validateForm(input){
-    
+    // ^ coincidencia en todas las lineas ?! coincide con siempre que no este en blanco * coincidencia de muchas letras repetidas
+    // $ coincide con lo ultimo /gm coincide todos los caracteres en multiples lineas
+    let pattern = /[0-9]{1,2}[ ][-][ ][0-9]{1,2}/
+    let expresion = /^(?![ .]+$)[a-zA-Z .]*$/gm;
     let errors = {};
     if(!input.name){
-        errors.name = "El nombre es requerido";
-    }
-    if(!input.height){
+        errors.name ="ingrese un nombre";
+    }else if (expresion.test(input.name) === false) {
+        errors.name = "el nombre solo debe contener letras y no debe superar los 9 caracteres";
+    }else if(!input.height){
         errors.height = "la altura es requerida 'min - max'";
-    }
-    if(!input.weight){
+    }else if(pattern.test(input.height) === false){
+        errors.height = "La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo"
+    }else if(parseInt(input.height) <= 0 ){
+        errors.height = "no se permiten numeros negativos o 0";
+    }else if(!input.weight){
         errors.weight = "el peso es requerido 'min - max'";
-    }
-    if(!input.life_span){
+    }else if(pattern.test(input.weight) === false){
+        errors.height = "La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo"
+    }else if(parseInt(input.weight) <= 0 ){
+        errors.height = "no se permiten numeros negativos o 0";
+    }else if(!input.life_span){
         errors.life_span = "la esperanza de vida es requerida 'min - max'";
+    }else if(pattern.test(input.life_span) === false){
+        errors.height = "La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo"
+    }else if(parseInt(input.life_span) <= 0 ){
+        errors.height = "no se permiten numeros negativos o 0";
     }
-    if(!input.temperament.length){
-        errors.temperament = "al menos un temperamento es requerido"
-    }
+
+   
+    
+    
 
     return errors;
         
@@ -44,9 +59,7 @@ export default function Created(){
     })
 
     function handleChange(e){
-        if (input.temperament.includes(e.target.value)) {
-            alert("ya seleccionaste este temperamento, vuelve a intentarlo");
-        } else{
+       
         setInput({  
             ...input,
             [e.target.name] : e.target.value
@@ -55,14 +68,14 @@ export default function Created(){
         setErrors(validateForm({
             ...input,
             [e.target.name] :  e.target.value, 
-        }))}
+        }))
         
     }
 
     function handleSelect(e){
        
         if (input.temperament.includes(e.target.value)) {
-            alert("ya seleccionaste este temperamento, vuelve a intentarlo");
+            alert("ya seleccionaste este temperamento");
         } else{
         setInput({
               ...input,
@@ -77,11 +90,10 @@ export default function Created(){
             alert("ingresa al menos un temperamento")
          }else{
              if (
-                 errors.name &&
-                 errors.weight &&
-                 errors.height &&
-                 errors.life_span &&
-                 errors.temperament.length 
+                 errors.name !== undefined  ||
+                 errors.weight !== undefined||
+                 errors.height !== undefined||
+                 errors.life_span !== undefined
              ){
                 alert("Revisa los errores")
             }else{
@@ -131,10 +143,8 @@ export default function Created(){
                     <input
                     type="text"
                     value={input.name}
-                    pattern="[A-zÁÉÍÓÚÑáéíóúñA z]{1,20}"
                     name="name"
                     required
-                    title="el nombre solo debe contener letras y no debe superar los 9 caracteres"
                     placeholder="Name"
                     onChange={(e) => handleChange(e)}
                     className='form__input'
@@ -151,9 +161,7 @@ export default function Created(){
                     type="text"
                     value={input.height}
                     name="height"
-                    pattern="[0-9]{1,2}[ ][-][ ][0-9]{1,2}"
                     required
-                    title="La altura debe tener un valor máximo seguido de espacio - espacio ( - ) y un valor mínimo"
                     placeholder="Height... e.g: 20 - 35"
                     onChange={(e) => handleChange(e)}
                     className='form__input'
@@ -172,9 +180,7 @@ export default function Created(){
                     type="text"
                     value={input.weight}
                     name="weight"
-                    pattern="[0-9]{1,2}[ ][-][ ][0-9]{1,2}"
                     required
-                    title="El peso debe tener un valor máximo seguido de espacio - espacio ( - ) y un valor mínimo"
                     placeholder="Weight... e.g: 1 - 95"
                     onChange={(e) => handleChange(e)}
                     className='form__input'
@@ -193,9 +199,7 @@ export default function Created(){
                     type="text"
                     value={input.life_span}
                     name="life_span"
-                    pattern="[0-9]{1,2}[ ][-][ ][0-9]{1,2}"
                     required
-                    title="La esperanza de vida debe tener un valor máximo seguido de espacio - espacio ( - ) y un valor mínimo"
                     placeholder="Life span... e.g: 5 - 16"
                     onChange={(e)=> handleChange(e)}
                     className='form__input'
