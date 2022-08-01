@@ -2,12 +2,9 @@ const axios = require("axios");
 const { APY_KEY } = process.env;
 const { Dog, Temperament, Op } = require("../../db");
 const url = `https://api.thedogapi.com/v1/breeds?api_key=${APY_KEY}`;
-const { v4: uuidv4 } = require("uuid");
 
 const fullInfo = async ()=>{
-   //traigo todo los perros de la api
    let allApiDogs = await axios.get(url);
-   // traigo todos los perros de la db, con su temperamento
    let allDbDogs = await Dog.findAll({
      include: {
        model: Temperament,
@@ -17,8 +14,7 @@ const fullInfo = async ()=>{
        },
      },
    });
-
-   //normalizo los datos de la db y los guardo en este array
+   //hago esto para que el temperament siempre sea temperaments con un array de objetos y valores
    let filteredDbDogs = [];
    for (let i = 0; i < allDbDogs.length; i++) {
      filteredDbDogs.push({
@@ -32,7 +28,6 @@ const fullInfo = async ()=>{
      });
    }
 
-   //normalizo los datos de la api y los guardo en este array
    let filteredApiDogs = await allApiDogs.data.map((dog) => {
      return {
        id: dog.id,
@@ -46,24 +41,26 @@ const fullInfo = async ()=>{
      };
    });
 
-   //concateno y envío los datos de la db y la api
+   
    let allDogs = [...filteredDbDogs, ...filteredApiDogs];
    return allDogs
 }
+
+//-------------------------------------------------------------------
+
 module.exports = {
   indexAndName: async (req, res) => {
     try {
       let name = req.query.name; 
   
-      //si hay una raza en el query
+    
       if (name) {
-        //voy a la ruta para busqueda por query y traigo las coincidencias
+       
         let allApiDogs = await axios.get(
           "https://api.thedogapi.com/v1/breeds/search?q=" + name
         );
-        //busco todas las coincidencias por nombre en la db
+       
         let allDbDogs = await Dog.findAll({
-          //incluyo el modelo temperament
           include: {
             model: Temperament,
             attributes: ["name"],
@@ -79,7 +76,7 @@ module.exports = {
           order: [["name", "ASC"]],
         });
   
-        //normalizo los datos de la db y los guardo en este array
+        //modifico el perro filtrado de db
         let filteredDbDogs = [];
         for (let i = 0; i < allDbDogs.length; i++) {
           filteredDbDogs.push({
@@ -93,7 +90,7 @@ module.exports = {
           });
         }
   
-        //normalizo los datos de la api y los guardo en este array
+        //filtro la info desde la api que me interesa del perro 
         let filteredApiDogs = allApiDogs.data.map((dog) => {
           return {
             id: dog.id,
@@ -102,8 +99,7 @@ module.exports = {
               dog.reference_image_id +
               ".jpg",
             name: dog.name,
-            temperaments: [dog.temperament].join()
-            .split(", "),
+            temperaments: !!dog.temperament?[dog.temperament].join().split(", "):["unknown temperament"],
             weight: dog.weight.metric,
             height:dog.height.metric,
           };
@@ -139,12 +135,9 @@ module.exports = {
 
   indexCreate: async (req, res) => {
     try {
-      const id = uuidv4();
-      //defino las caracteristicas a recibir por body
       const { name, height, weight, life_span, image, temperament } = req.body;
       //creo un nuevo perro en la db con los datos recibidos
       const newDog = await Dog.create({
-        id,
         name,
         height,
         weight,
