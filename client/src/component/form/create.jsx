@@ -6,8 +6,8 @@ import "./create.css";
 
 function validateForm(input) {
   // ^ coincidencia en todas las lineas ?! coincide con siempre que no este en blanco * coincidencia de muchas letras repetidas
-  // $ coincide con lo ultimo /gm coincide todos los caracteres en multiples lineas
-  let pattern = /[0-9]{1,2}[ ][-][ ][0-9]{1,2}/;
+  // $ coincide con lo ultimo /gm coincide todos los caracteres en multiples lineas /[0-9]{1,2}[ ][-][ ][0-9]{1,2}/
+  let pattern =  /^[0-9][ ][-][ ][0-9]*$/;
   let expresion = /^(?![ .]+$)[a-zA-Z .]*$/gm;
 
   let errors = {};
@@ -15,46 +15,47 @@ function validateForm(input) {
   if (!input.name) {
     errors.name = "ingrese un nombre";
   } else if (!expresion.test(input.name)) {
-    errors.name =
-      "el nombre solo debe contener letras y no debe superar los 9 caracteres";
+    errors.name ="el nombre solo debe contener letras y no debe superar los 9 caracteres";
   } else if (!input.height) {
     errors.height = "la altura es requerida 'min - max'";
   } else if (!pattern.test(input.height)) {
-    errors.height =
-      "La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo";
-  } else if (
-    input.height.split(/ - /)[0] <= 0 ||
-    input.height.split(/ - /)[1] <= 0
-  ) {
-    errors.height = "no se permiten numeros negativos o 0";
-  } else if (input.height.split(/ - /)[0] >= input.height.split(/ - /)[1]) {
+    errors.height ="La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo";
+  } else if (parseInt(input.height.split(" - ")[0]) >= parseInt(input.height.split(" - ")[1])) {
     errors.height = "el primer nuemero debe ser menor que el segundo";
+  } else if (
+    parseInt(input.height.split(" - ")[0]) <= 0 ||
+    parseInt(input.height.split(" - ")[1]) <= 0 ||
+    parseInt(input.height.split(" - ")[0]) > 19 ||
+    parseInt(input.height.split(" - ")[1]) > 20 
+  ) {
+    errors.height = "no se permite numeros mayores a 20, negativos o 0";
   } else if (!input.weight) {
     errors.weight = "el peso es requerido 'min - max'";
   } else if (!pattern.test(input.weight)) {
-    errors.height =
-      "La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo";
-  } else if (
-    input.weight.split(/ - /)[0] <= 0 ||
-    input.weight.split(/ - /)[1] <= 0
-  ) {
-    errors.weight = "no se permiten numeros negativos o 0";
-  } else if (input.weight.split(/ - /)[0] >= input.weight.split(/ - /)[1]) {
+    errors.height ="La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo";
+  } else if (parseInt(input.weight.split(" - ")[0]) >= input.weight.split(" - ")[1]) {
     errors.weight = "el primer nuemero debe ser menor que el segundo";
+  } else if (
+    parseInt(input.weight.split(" - ")[0]) <= 0 || 
+    parseInt(input.weight.split(" - ")[1]) <= 0 ||
+    parseInt(input.weight.split(" - ")[0]) > 19 || 
+    parseInt(input.weight.split(" - ")[1]) > 20 
+  ) {
+    errors.weight = "no se permite numeros mayores a 20, negativos o 0";
   } else if (!input.life_span) {
     errors.life_span = "la esperanza de vida es requerida 'min - max'";
   } else if (!pattern.test(input.life_span)) {
     errors.life_span =
       "La altura debe tener un valor minimo seguido de espacio - espacio ( - ) y un valor maximo";
-  } else if (
-    input.life_span.split(/ - /)[0] <= 0 ||
-    input.life_span.split(/ - /)[1] <= 0
-  ) {
-    errors.life_span = "no se permiten numeros negativos o 0";
-  } else if (
-    input.life_span.split(/ - /)[0] >= input.life_span.split(/ - /)[1]
-  ) {
+  } else if (parseInt(input.life_span.split(" - ")[0]) >= parseInt(input.life_span.split(" - ")[1])){
     errors.life_span = "el primer nuemero debe ser menor que el segundo";
+  } else if (
+    parseInt(input.life_span.split(" - ")[0]) <= 0 ||
+    parseInt(input.life_span.split(" - ")[1]) <= 0 ||
+    parseInt(input.life_span.split(" - ")[0]) > 19 || 
+    parseInt(input.life_span.split(" - ")[1]) > 20 
+  ) {
+    errors.life_span = "no se permite numeros mayores a 20, negativos o 0";
   }
 
   return errors;

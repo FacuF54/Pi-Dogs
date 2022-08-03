@@ -23,12 +23,16 @@ export const getDogs = () => {
 };
 
 export const getName = (name) => async dispatch => {
-    const data = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-    const data_1 = data.data;
-    return dispatch({
-        type: GET_NAME,
-        payload: data_1
-    });
+    try {
+        const data = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+        const data_1 = data.data;
+        return dispatch({
+            type: GET_NAME,
+            payload: data_1
+        });
+    } catch (error) {
+        console.log(error)
+    }
 };
 export const getId = (id) => dispatch => {
     return axios(`http://localhost:3001/dogs/${id}`)

@@ -55,59 +55,58 @@ module.exports = {
   
     
       if (name) {
-       
-        let allApiDogs = await axios.get(
-          "https://api.thedogapi.com/v1/breeds/search?q=" + name
-        );
-       
-        let allDbDogs = await Dog.findAll({
-          include: {
-            model: Temperament,
-            attributes: ["name"],
-            through: {
-              attributes: [],
-            },
-          },
-          where: {
-            name: {
-              [Op.iLike]: "%" + name + "%",
-            },
-          },
-          order: [["name", "ASC"]],
-        });
-  
-        //modifico el perro filtrado de db
-        let filteredDbDogs = [];
-        for (let i = 0; i < allDbDogs.length; i++) {
-          filteredDbDogs.push({
-            id: allDbDogs[i].dataValues.id,
-            name: allDbDogs[i].dataValues.name,
-            height: allDbDogs[i].dataValues.height,
-            weight: allDbDogs[i].dataValues.weight,
-            life_span: allDbDogs[i].dataValues.life_span,
-            image: allDbDogs[i].dataValues.image,
-            temperaments: allDbDogs[i].dataValues.temperaments.map((t) => t.name),
-          });
-        }
-  
-        //filtro la info desde la api que me interesa del perro 
-        let filteredApiDogs = allApiDogs.data.map((dog) => {
-          return {
-            id: dog.id,
-            image:
-              "https://cdn2.thedogapi.com/images/" +
-              dog.reference_image_id +
-              ".jpg",
-            name: dog.name,
-            temperaments: !!dog.temperament?[dog.temperament].join().split(", "):["unknown temperament"],
-            weight: dog.weight.metric,
-            height:dog.height.metric,
-          };
-        });
-  
-        //concateno datos de api y bd y envío los datos
-        let allDogs = [...filteredDbDogs, ...filteredApiDogs];
-  
+         let allApiDogs = await axios.get(
+           "https://api.thedogapi.com/v1/breeds/search?q=" + name
+         );
+        
+         let allDbDogs = await Dog.findAll({
+           include: {
+             model: Temperament,
+             attributes: ["name"],
+             through: {
+               attributes: [],
+             },
+           },
+           where: {
+             name: {
+               [Op.iLike]: "%" + name + "%",
+             },
+           },
+           order: [["name", "ASC"]],
+         });
+   
+         //modifico el perro filtrado de db
+         let filteredDbDogs = [];
+         for (let i = 0; i < allDbDogs.length; i++) {
+           filteredDbDogs.push({
+             id: allDbDogs[i].dataValues.id,
+             name: allDbDogs[i].dataValues.name,
+             height: allDbDogs[i].dataValues.height,
+             weight: allDbDogs[i].dataValues.weight,
+             life_span: allDbDogs[i].dataValues.life_span,
+             image: allDbDogs[i].dataValues.image,
+             temperaments: allDbDogs[i].dataValues.temperaments.map((t) => t.name),
+           });
+         }
+   
+         //filtro la info desde la api que me interesa del perro 
+         let filteredApiDogs = allApiDogs.data.map((dog) => {
+           return {
+             id: dog.id,
+             image:
+               "https://cdn2.thedogapi.com/images/" +
+               dog.reference_image_id +
+               ".jpg",
+             name: dog.name,
+             temperaments: !!dog.temperament?[dog.temperament].join().split(", "):["unknown temperament"],
+             weight: dog.weight.metric,
+             height:dog.height.metric,
+           };
+         });
+   
+         //concateno datos de api y bd y envío los datos
+         let allDogs = [...filteredDbDogs, ...filteredApiDogs];
+        
         res.send(allDogs);
       } else {
         let allDogs = await fullInfo()

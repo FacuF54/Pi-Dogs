@@ -9,16 +9,14 @@ const Nav = ({ setOrder, setPage }) => {
 
   function handleInputChange(e) {
     e.preventDefault();
-     dispatch(getName(name));
     setName(e.target.value);
   }
-
   function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(getName(name));
-    setName("");
-    setPage(1); 
-    setOrder(`Order ${e.target.value}`); 
+      e.preventDefault();
+      dispatch(getName(name))
+      setName("");
+      setPage(1); 
+      setOrder(`Order ${e.target.value}`); 
   }
   return (
     <div className="searchbar">
@@ -27,7 +25,7 @@ const Nav = ({ setOrder, setPage }) => {
         type="text"
         placeholder="Busca un perro..."
         onChange={(e) => handleInputChange(e)}
-        value={name || ""}
+        value={name ||""}
       />
       <button
         className="botonNav"
