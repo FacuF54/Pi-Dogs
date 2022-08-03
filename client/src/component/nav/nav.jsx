@@ -9,6 +9,7 @@ const Nav = ({ setOrder, setPage }) => {
 
   function handleInputChange(e) {
     e.preventDefault();
+     dispatch(getName(name));
     setName(e.target.value);
   }
 

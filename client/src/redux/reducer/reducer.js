@@ -63,11 +63,9 @@ const rootReducer = (state = initialState, action) => {
 
     case FILTER_BY_TEMP:
 
-    const allDogsTemps = [...state.allDogs];
+    const allDogsTemps = [...state.dogs];
 
-    const filteredTempDogs = allDogsTemps.filter((dog) =>
-    dog.temperaments?.includes(action.payload)
-  );
+    const filteredTempDogs = allDogsTemps.filter((dog) => dog.temperaments?.includes(action.payload));
       return {
         ...state,
         dogs: filteredTempDogs,

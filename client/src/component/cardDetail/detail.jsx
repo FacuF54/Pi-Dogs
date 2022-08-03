@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getId, reSetDetails } from "../../redux/action";
 import "./detail.css";
@@ -58,9 +58,9 @@ const Detail = (props) => {
           <p> ¡Vaya! Falta un perro ( ˘︹˘ )</p>
         )}
       </div>
-      <Link to="/home">
+      {/* <Link to="/home">
         <button className="botonDetail">Go Back</button>
-      </Link>
+      </Link> */}
     </div>
   );
 };

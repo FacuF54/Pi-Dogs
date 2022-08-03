@@ -161,7 +161,7 @@ const Home = () => {
           currentPerros.map((detail) => {
             return (
               <div key={detail.id} className="dataCard" >
-                <Link to={`/home/${detail.id}`}>
+                <Link to={`/home/${detail.id}`}  target="_blank">
                   <CardHome
                     image={detail.image}
                     name={detail.name}
