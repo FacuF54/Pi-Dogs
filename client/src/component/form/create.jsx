@@ -6,9 +6,10 @@ import "./create.css";
 
 function validateForm(input) {
   // ^ coincidencia en todas las lineas ?! coincide con siempre que no este en blanco * coincidencia de muchas letras repetidas
-  // $ coincide con lo ultimo /gm coincide todos los caracteres en multiples lineas /[0-9]{1,2}[ ][-][ ][0-9]{1,2}/
-  let pattern =  /^[0-9][ ][-][ ][0-9]*$/;
+  // $ coincide con lo ultimo /gm coincide todos los caracteres en multiples lineas 
+  let pattern =  /^[0-9]+[ ]+[-]+[ ]+[0-9]*$/;
   let expresion = /^(?![ .]+$)[a-zA-Z .]*$/gm;
+  
 
   let errors = {};
 
@@ -25,8 +26,8 @@ function validateForm(input) {
   } else if (
     parseInt(input.height.split(" - ")[0]) <= 0 ||
     parseInt(input.height.split(" - ")[1]) <= 0 ||
-    parseInt(input.height.split(" - ")[0]) > 19 ||
-    parseInt(input.height.split(" - ")[1]) > 20 
+    parseInt(input.height.split(" - ")[0]) > 20 ||
+    parseInt(input.height.split(" - ")[1]) > 35
   ) {
     errors.height = "no se permite numeros mayores a 20, negativos o 0";
   } else if (!input.weight) {
@@ -38,8 +39,8 @@ function validateForm(input) {
   } else if (
     parseInt(input.weight.split(" - ")[0]) <= 0 || 
     parseInt(input.weight.split(" - ")[1]) <= 0 ||
-    parseInt(input.weight.split(" - ")[0]) > 19 || 
-    parseInt(input.weight.split(" - ")[1]) > 20 
+    parseInt(input.weight.split(" - ")[0]) > 50 || 
+    parseInt(input.weight.split(" - ")[1]) > 90 
   ) {
     errors.weight = "no se permite numeros mayores a 20, negativos o 0";
   } else if (!input.life_span) {
@@ -52,12 +53,11 @@ function validateForm(input) {
   } else if (
     parseInt(input.life_span.split(" - ")[0]) <= 0 ||
     parseInt(input.life_span.split(" - ")[1]) <= 0 ||
-    parseInt(input.life_span.split(" - ")[0]) > 19 || 
-    parseInt(input.life_span.split(" - ")[1]) > 20 
+    parseInt(input.life_span.split(" - ")[0]) > 8 || 
+    parseInt(input.life_span.split(" - ")[1]) > 25 
   ) {
     errors.life_span = "no se permite numeros mayores a 20, negativos o 0";
   }
-
   return errors;
 }
 
