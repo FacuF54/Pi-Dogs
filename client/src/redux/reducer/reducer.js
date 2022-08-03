@@ -26,11 +26,11 @@ const rootReducer = (state = initialState, action) => {
         dogs: action.payload,
       };
 
-      case RESET_DETAILS:
-        return {
-            ...state,
-            detail: {}
-        }
+    case RESET_DETAILS:
+      return {
+        ...state,
+        detail: {},
+      };
 
     case GET_NAME:
       return {
@@ -43,17 +43,16 @@ const rootReducer = (state = initialState, action) => {
         detail: action.payload,
       };
 
-
     case GET_TEMPS:
       return {
         ...state,
         temperaments: action.payload,
       };
     case FILTER_CREATE:
-      const allDogsCreated = state.allDogs; 
+      const allDogsCreated = state.allDogs;
       const filteredCreatedDogs =
         action.payload === "Created"
-          ? allDogsCreated.filter((dog) => typeof dog.id === "string") 
+          ? allDogsCreated.filter((dog) => typeof dog.id === "string")
           : allDogsCreated.filter((dog) => typeof dog.id === "number");
 
       return {
@@ -62,63 +61,62 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case FILTER_BY_TEMP:
+      const allDogsTemps = [...state.dogs];
 
-    const allDogsTemps = [...state.dogs];
-
-    const filteredTempDogs = allDogsTemps.filter((dog) => dog.temperaments?.includes(action.payload));
+      const filteredTempDogs = allDogsTemps.filter((dog) =>
+        dog.temperaments?.includes(action.payload)
+      );
       return {
         ...state,
         dogs: filteredTempDogs,
       };
 
-      case FILTER_BY_NAMES:
+    case FILTER_BY_NAMES:
+      let filtro = state.dogs;
 
-      let filtro = state.dogs
-
-      let sortBreed = action.payload === 'ASC'? 
-
-      filtro.sort(function(a,b){
-              if(a.name > b.name){
-                  return 1 
+      let sortBreed =
+        action.payload === "ASC"
+          ? filtro.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
               }
-              if(b.name > a.name){
-                  return -1 
+              if (b.name > a.name) {
+                return -1;
               }
-              return 0 
-      }) : filtro.sort(function(a,b){
-              if(a.name > b.name){
-                  return -1
+              return 0;
+            })
+          : filtro.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
               }
-              if(b.name > a.name){
-                  return 1 
+              if (b.name > a.name) {
+                return 1;
               }
-              return 0 
-          }) 
-      return{
+              return 0;
+            });
+      return {
         ...state,
-        dogs: sortBreed
-      }
-      case ORDER_BY_WEIGHT:
-            
-        let arr = state.dogs.filter(el => el.weight !== false);
-        
-        let sortWeight = action.payload === 'minToMax'?
-                
-        arr.sort(function(a,b){
-            return a.weight.split(/ - /)[0] - b.weight.split(/ - /)[0]      
+        dogs: sortBreed,
+      };
+    case ORDER_BY_WEIGHT:
+      let arr = state.dogs.filter((el) => el.weight !== false);
 
-        }) :
-
-        arr.sort(function(a,b){
-        
-            return a.weight.split(/ - /)[1] - b.weight.split(/ - /)[1]
-        }) 
-            
-        return {
-            ...state,
-            dogs: sortWeight
-            
-        }
+      let sortWeight =
+        action.payload === "minToMax"
+          ? arr.sort(function (a, b) {
+              return a.weight.split(/ - /)[0] === b.weight.split(/ - /)[0]
+                ? a.weight.split(/ - /)[1] - b.weight.split(/ - /)[1]
+                : a.weight.split(/ - /)[0] - b.weight.split(/ - /)[0];
+            })
+          : arr.sort(function (a, b) {
+              return b.weight.split(/ - /)[1] === a.weight.split(/ - /)[1]
+                ? b.weight.split(/ - /)[0] - a.weight.split(/ - /)[0]
+                : b.weight.split(/ - /)[1] - a.weight.split(/ - /)[1];
+            });
+      return {
+        ...state,
+        dogs: sortWeight,
+      };
     default:
       return {
         ...state,

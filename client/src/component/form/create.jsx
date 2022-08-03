@@ -11,7 +11,7 @@ function validateForm(input) {
   let expresion = /^(?![ .]+$)[a-zA-Z .]*$/gm;
   
 
-  let errors = {};
+  let errors = {};                                                                                                                                             
 
   if (!input.name) {
     errors.name = "ingrese un nombre";
@@ -29,7 +29,7 @@ function validateForm(input) {
     parseInt(input.height.split(" - ")[0]) > 20 ||
     parseInt(input.height.split(" - ")[1]) > 35
   ) {
-    errors.height = "no se permite numeros mayores a 20, negativos o 0";
+    errors.height = "no se permite numeros mayores a 35, negativos o 0";
   } else if (!input.weight) {
     errors.weight = "el peso es requerido 'min - max'";
   } else if (!pattern.test(input.weight)) {
@@ -42,7 +42,7 @@ function validateForm(input) {
     parseInt(input.weight.split(" - ")[0]) > 50 || 
     parseInt(input.weight.split(" - ")[1]) > 90 
   ) {
-    errors.weight = "no se permite numeros mayores a 20, negativos o 0";
+    errors.weight = "no se permite numeros mayores a 90, negativos o 0";
   } else if (!input.life_span) {
     errors.life_span = "la esperanza de vida es requerida 'min - max'";
   } else if (!pattern.test(input.life_span)) {
@@ -56,7 +56,7 @@ function validateForm(input) {
     parseInt(input.life_span.split(" - ")[0]) > 8 || 
     parseInt(input.life_span.split(" - ")[1]) > 25 
   ) {
-    errors.life_span = "no se permite numeros mayores a 20, negativos o 0";
+    errors.life_span = "no se permite numeros mayores a 25, negativos o 0";
   }
   return errors;
 }
