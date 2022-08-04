@@ -7,6 +7,7 @@ import {
   getDogs,
   getTemps,
   orderByWeight,
+  orderNum 
 } from "../../redux/action";
 import CardHome from "../cardHome/cardHome";
 import "./home.css";
@@ -38,8 +39,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(getTemps());
-    dispatch(getDogs());
+      dispatch(getTemps());
+      dispatch(getDogs());
   }, [dispatch]);
 
   function handleReset(e) {
@@ -67,8 +68,8 @@ const Home = () => {
   function handleOrderByWeight(e) {
     e.preventDefault();
     dispatch(orderByWeight(e.target.value));
-    setPage(1); 
-    setOrder(e.target.value); 
+    setPage(1);
+    setOrder(e.target.value);
   }
 
   return (
@@ -104,7 +105,7 @@ const Home = () => {
             handleFilterByCreated(e);
           }}
         >
-          <option value="" disabled>
+          <option value="" disabled="disabled" selected="selected">
             elije uno...
           </option>
           <option value="Exists">Perros existentes</option>
@@ -129,8 +130,8 @@ const Home = () => {
             handleOrderByName(e);
           }}
         >
-          <option value="" disabled>
-            elije uno...
+          <option value="" disabled="disabled" selected="selected">
+            elije un orden alfabetico...
           </option>
           <option value="ASC">filtrado de a-z</option>
           <option value="DES">filtrado de z-a</option>
@@ -142,10 +143,16 @@ const Home = () => {
             handleOrderByWeight(e);
           }}
         >
+          <option value="" disabled="disabled" selected="selected">
+            elije peso...
+          </option>
           <option value="minToMax">menor a mayor peso</option>
           <option value="maxToMin">mayor a menor peso</option>
         </select>
+        
+        
       </div>
+
 
       <div>
         <Paginado
@@ -156,12 +163,14 @@ const Home = () => {
         />
       </div>
 
+     
+
       <div className="dogs">
         {currentPerros.length ? (
           currentPerros.map((detail) => {
             return (
               <div key={detail.id} className="dataCard" >
-                <Link to={`/home/${detail.id}`}  target="_blank">
+                <Link to={`/home/${detail.id}`} >
                   <CardHome
                     image={detail.image}
                     name={detail.name}

@@ -8,6 +8,7 @@ import {
   GET_ID,
   RESET_DETAILS,
   ORDER_BY_WEIGHT,
+  FILTER_NUM,
 } from "../action";
 
 const initialState = {
@@ -117,6 +118,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogs: sortWeight,
       };
+
     default:
       return {
         ...state,

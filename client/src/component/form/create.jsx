@@ -103,7 +103,7 @@ export default function Created() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const validatioName = nameDogs.filter((e) => e.name === input.name)
+    const validatioName = nameDogs.filter((e) => e.name.toLowerCase() === input.name.toLowerCase())
 
     console.log(validatioName)
     console.log( input.name)
