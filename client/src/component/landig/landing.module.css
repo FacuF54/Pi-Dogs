@@ -1,34 +1,57 @@
 .contain {
-    position: relative;
+    /* position: relative;
     text-align: center;
     align-items: center;
-    background-image: url(https://th.bing.com/th/id/OIP.ryWu7rEbFAPJV5Mai1KMzgEsEs?w=170&h=180&c=7&r=0&o=5&pid=1.7);
+    background-image: url(https://th.bing.com/th/id/OIP.gkpm1wFeV3RmR9oAs8rCqwHaD5?w=285&h=180&c=7&r=0&o=5&pid=1.7);
     width: 100%;
-    height: 827px;
+    height: 827px; */
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%), url(https://th.bing.com/th/id/OIP.gkpm1wFeV3RmR9oAs8rCqwHaD5?w=285&h=180&c=7&r=0&o=5&pid=1.7);
+    background-size: cover;
+    object-fit: contain;
+    overflow-y: scroll;
 }
 
-.contain .containButton {
-    position: absolute;
+.containButton {
+    position: fixed;
+    text-align: center;
     top: 15rem;
     left: 3rem;
-    height: 15rem;
-    width: 20rem;
-    display: flex;
+    
+    display: inline-block;
     justify-content: center;
     align-items: center;
 }
+.botonLanding{
+    display: inline-block;
+    justify-content: center;
+   
+    padding: 2rem;
+    align-items: center;
+    text-align: center;
+}
+.linkNav{
+    text-decoration: none;
+    all: unset;
+}
 
 .contain button {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-family: pokeSolid;
     font-size: 2.1rem;
     text-shadow: 2px 2px 0 var(--blue), 2px -2px 0 var(--blue), -2px 2px 0 var(--blue), -2px -2px 0 var(--blue), 2px 0px 0 var(--blue), 0px 2px 0 var(--blue), -2px 0px 0 var(--blue), 0px -2px 0 var(--blue);
-    height: 8rem;
-    width: 17rem;
+    background-color: darkslategray;
     background-position: center;
     background-size: 1rem 1rem;
     color: var(--yellow);
     letter-spacing: 4px;
-    background-color: white;
     background-repeat: no-repeat;
     transition: all 1s;
     /* border-radius: 15px 15px 15px 15px; */

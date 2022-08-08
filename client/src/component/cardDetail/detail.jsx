@@ -53,7 +53,7 @@ const Detail = (props) => {
                 mi esperanza de vida es de: {dogDetail.life_span} años.
               </span>
             </div>
-            <Link to= "/home">volver</Link>
+            <Link to= "/home"><button className="volverDetail">volver</button></Link>
           </div>
         ) : (
           <p> ¡Vaya! Falta un perro ( ˘︹˘ )</p>

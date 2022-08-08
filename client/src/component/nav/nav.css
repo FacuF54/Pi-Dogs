@@ -1,7 +1,8 @@
 
 .searchbar {
-  /* flex-basis: 50%; */
+  flex-basis: 50%;
   transform: translate(3%);
+  padding: 3%;
   }
 
   .inputNav {

@@ -7,7 +7,6 @@ import {
   getDogs,
   getTemps,
   orderByWeight,
-  orderNum 
 } from "../../redux/action";
 import CardHome from "../cardHome/cardHome";
 import "./home.css";
@@ -75,9 +74,11 @@ const Home = () => {
   return (
     <div className="home">
       <nav className="nav">
+        
         <Link className="linkVolver" to="/">
           <button className="volverInicio">Dogs</button>
         </Link>
+        
 
         <Nav setOrder={setOrder} setPage={setPage} />
         
@@ -96,6 +97,7 @@ const Home = () => {
           {" "}
           Reset
         </button>
+        
       </nav>
 
       <div className="filtrosPerros">

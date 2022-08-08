@@ -8,6 +8,13 @@
     height: 100vh;
     color: rgb(66, 66, 63);
     font-family: fantasy;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+background-size: cover;
+    object-fit: contain;
+    overflow-y: scroll;
 }
 
 .breed-nav{
