@@ -12,7 +12,7 @@ export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 
 export const getDogs = () => {
   return async (dispatch) => {
-    const json = await axios("http://localhost:3001/dogs/").then(
+    const json = await axios("/dogs/").then(
       (res) => res.data
     );
     return dispatch({
@@ -24,7 +24,7 @@ export const getDogs = () => {
 
 export const getName = (name) => async (dispatch) => {
   try {
-    const data = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+    const data = await axios.get(`/dogs?name=${name}`);
     const data_1 = data.data;
     return dispatch({
       type: GET_NAME,
@@ -35,7 +35,7 @@ export const getName = (name) => async (dispatch) => {
   }
 };
 export const getId = (id) => (dispatch) => {
-  return axios(`http://localhost:3001/dogs/${id}`)
+  return axios(`/dogs/${id}`)
     .then((res) => res.data)
     .then((res) =>
       dispatch({
@@ -61,7 +61,7 @@ export function filterByTemp(temp) {
 
 export const getTemps = () => (dispatch) => {
   return axios
-    .get("http://localhost:3001/temperament")
+    .get("/temperament")
     .then((data) => data.data)
     .then((data) =>
       dispatch({
@@ -92,7 +92,7 @@ export function reSetDetails() {
 }
 export function postBreed(payload) {
   return async function () {
-    const json = await axios.post("http://localhost:3001/dogs/", payload);
+    const json = await axios.post("/dogs/", payload);
     return json;
   };
 }
