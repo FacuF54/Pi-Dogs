@@ -146,7 +146,7 @@ const Home = () => {
           }}
         >
           <option value="" disabled="disabled" selected="selected">
-            elije peso...
+            elije un orden por peso...
           </option>
           <option value="minToMax">menor a mayor peso</option>
           <option value="maxToMin">mayor a menor peso</option>
