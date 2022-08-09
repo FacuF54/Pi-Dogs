@@ -21,10 +21,12 @@ const Detail = (props) => {
   console.log(dogDetail, "se llena el selector");
   return (
     <div className="contieneDetail">
-      <div className="card">
+     
         {dogDetail ? (
-          <div>
+          <div className="card">
+            <div className="divImagen">
             <img className="img" src={dogDetail.image} alt="broken" />
+            </div>
             <div className="nombreDetail">
               <span>
                 Hola! <br /> mi nombre es... <br /> <br /> {dogDetail.name}
@@ -50,15 +52,18 @@ const Detail = (props) => {
             </div>
             <div className="lifeSpan">
               <span>
-                mi esperanza de vida es de: {dogDetail.life_span} años.
+                mi esperanza de vida es de: {dogDetail.life_span}
               </span>
             </div>
+            <div className="volverDetail">
+
             <Link to= "/home"><button className="volverDetail">volver</button></Link>
+            </div>
           </div>
         ) : (
           <p> ¡Vaya! Falta un perro ( ˘︹˘ )</p>
         )}
-      </div>
+      
     </div>
   );
 };

@@ -1,138 +1,190 @@
-.contieneDetail{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%), url(https://th.bing.com/th/id/R.a0df65e07150d7f8f1f733e72ea0e8ec?rik=9lTcGTmgw6iKug&pid=ImgRaw&r=0);
-    background-size: cover;
-    object-fit: contain;
-    overflow-y: scroll;
+.contieneDetail {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%),
+    url(https://th.bing.com/th/id/R.a0df65e07150d7f8f1f733e72ea0e8ec?rik=9lTcGTmgw6iKug&pid=ImgRaw&r=0);
+  background-size: cover;
+  object-fit: contain;
+  overflow-y: scroll;
 }
 .card {
-    display: table;
-    position: relative;
-    flex-direction: column;
-    background-size: cover;
-    align-items: center;
-    object-fit: contain;
-     overflow-y: scroll;
-    margin: 2rem;
-    background-color: transparent;
-    border-radius: 40px;
-    border:solid ;
-    border-color: rgb(2, 2, 2);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 300px;
-    height: 420px;
-    min-height: 200px;
-    min-width: 300px;
-    
-    flex-direction: row;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-size: cover;
+  align-items: center;
+  object-fit: contain;
+  overflow-y: scroll;
+  margin: 2rem;
+  border-radius: 40px;
+  border: solid;
+  padding: 30px;
+  width: 300px;
+  height: fit-content;
+  min-height: 200px;
+  min-width: 300px;
+  background: #07182e;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
 }
 
-.img {
-    justify-content: center;
-    align-items: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 20px;
-    object-fit: cover;
-    width: 50%;
-    height: auto;
-}
-.volverDetail{
-    background-color: #cbf3f0; 
-    border-radius: 8px;
-    color: rgb(51, 51, 49);
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-family: fantasy;
-    font-size: 16px;
-    height: fit-content;
-    
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.volverDetail:hover{
-    cursor: pointer;
-    box-shadow: 0 12px 16px 0 rgb(51, 51, 49), 0 17px 50px 0 rgb(51, 51, 49);
+.card::after {
+  content: "";
+  position: absolute;
+  background: #07182e;
+  inset: 5px;
+  border-radius: 15px;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  background-image: linear-gradient(
+    180deg,
+    rgb(0, 183, 255),
+    rgb(255, 48, 255)
+  );
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+.card .img {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  width: 50%;
+  height: auto;
+  padding: 1rem;
+}
+.divImagen{
+    z-index: 1;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  height: fit-content;
+
+}
+.volverDetail {
+  z-index: 1;
+  border-radius: 8px;
+  color: rgb(51, 51, 49);
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: fantasy;
+  font-size: 16px;
+  height: fit-content;
+}
+
+.volverDetail:hover {
+  cursor: pointer;
 }
 
 .nombreDetail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 700;
-    font-size: 1.5em;
-    text-decoration: none;
-    color: black;
-    margin-top: 1px;
-    margin-bottom: 2rem;
-    border-width: 1px;
-    width: 100%;
-    height: 15%;
-  }
+  z-index: 1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  text-decoration: none;
+  
+  margin-top: 1px;
+  margin-bottom: 2rem;
+  border-width: 1px;
+  width: 100%;
+  height: 15%;
+}
 
 .tempCardDetalle {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 16px;
-    width: 100%;
-     color: black;
-  }
-
-.alturaDetail{
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 700;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-size: 1em;
-    color: black;
-}
-.pesoDetail{
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 700;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-size: 1em;
-    color: black;
-}
-.lifeSpan{
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 700;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-size: 1em;
-    color: black;
+  z-index: 1;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 16px;
+  width: 100%;
+  
 }
 
-.botonDetail{
-    background-color: #cbf3f0; 
-    border-radius: 8px;
-    color: rgb(51, 51, 49);
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-family: fantasy;
-    font-size: 16px;
-    min-width: 30px;
-    transform: translate(-2rem,5rem);
+.alturaDetail {
+  z-index: 1;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1em;
+  
+}
+.pesoDetail {
+  z-index: 1;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1em;
+  
+}
+.lifeSpan {
+  z-index: 1;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1em;
+  
 }
 
-.botonDetail:hover{
+.botonDetail {
+  z-index: 1;
+  background-color: #cbf3f0;
+  border-radius: 8px;
+  color: rgb(51, 51, 49);
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: fantasy;
+  font-size: 16px;
+  min-width: 30px;
+  transform: translate(-2rem, 5rem);
+}
+
+.botonDetail:hover {
   cursor: pointer;
-  box-shadow: 0 12px 16px 0 rgb(51, 51, 49), 0 17px 50px 0 rgb(51, 51, 49);
 }
 
-.tempDet{
-    transform: translateX(5rem);
+.tempDet {
+  transform: translateX(5rem);
 }
