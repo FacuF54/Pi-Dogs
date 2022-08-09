@@ -1,7 +1,7 @@
 .cardDetail {
     display: inline-block;
     position: relative;
-    background-color: rgb(151, 1, 151);
+    background-image: url(https://cdn.pixabay.com/photo/2016/01/27/15/25/space-1164579_960_720.png);
     margin: 2rem;
     border-radius: 10px;
     padding: 30px;
