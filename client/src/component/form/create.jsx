@@ -157,9 +157,11 @@ export default function Created() {
         <div className="breed-titles">
           <h1>Ingresa los datos del perro:</h1>
         </div>
+        <div>
         <Link to="/home">
           <button className="create-btn">Go back home</button>
         </Link>
+        </div>
       </nav>
 
       <div className="flex-container">
