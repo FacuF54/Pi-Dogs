@@ -108,7 +108,7 @@ const Home = () => {
           }}
         >
           <option value="" disabled="disabled" selected="selected">
-            elije uno...
+            Perro creado o existente...
           </option>
           <option value="Exists">Perros existentes</option>
           <option value="Created">Perros creados</option>
@@ -117,7 +117,7 @@ const Home = () => {
         <select className="temp" onChange={(e) => handleFilterTemp(e)}>
           <>
             <option value="" disabled selected="selected"> 
-              elije uno...
+              elije un temperamento...
             </option>
 
             {allTemps.map((t,i) => {
