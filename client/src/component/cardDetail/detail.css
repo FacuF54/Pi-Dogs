@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(109,34,195);
-  background: linear-gradient(0deg, rgba(109,34,195,1) 0%, rgba(227,63,207,1) 100%);
+  background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%),
+    url(https://cdn.pixabay.com/photo/2016/01/27/15/25/space-1164579_960_720.png);
   background-size: cover;
   object-fit: contain;
   overflow-y: scroll;
