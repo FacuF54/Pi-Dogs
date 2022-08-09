@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%),
-    url(https://th.bing.com/th/id/R.a0df65e07150d7f8f1f733e72ea0e8ec?rik=9lTcGTmgw6iKug&pid=ImgRaw&r=0);
+  background: rgb(109,34,195);
+  background: linear-gradient(0deg, rgba(109,34,195,1) 0%, rgba(227,63,207,1) 100%);
   background-size: cover;
   object-fit: contain;
   overflow-y: scroll;
