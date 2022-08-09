@@ -116,7 +116,7 @@ const Home = () => {
 
         <select className="temp" onChange={(e) => handleFilterTemp(e)}>
           <>
-            <option value="" disabled>
+            <option value="" disabled selected="selected"> 
               elije uno...
             </option>
 
