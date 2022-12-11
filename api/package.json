@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "test": "mocha -w ./tests/**/*.spec.js",
+    "builder": "nixpacks",
+    "buildCommand": "echo building!"
   },
   "author": "Henry",
   "license": "ISC",
@@ -25,10 +27,6 @@
     "sequelize": "^6.3.5",
      "nodemon": "^2.0.19"
   }, 
-  "build": {
-    "builder": "nixpacks",
-    "buildCommand": "echo building!"
-  },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
