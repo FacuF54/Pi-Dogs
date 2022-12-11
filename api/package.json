@@ -25,6 +25,10 @@
     "sequelize": "^6.3.5",
      "nodemon": "^2.0.19"
   }, 
+  "build": {
+    "builder": "nixpacks",
+    "buildCommand": "echo building!"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
