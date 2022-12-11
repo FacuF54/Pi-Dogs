@@ -7,7 +7,7 @@ const {
 } = process.env;
 
 let sequelize =new Sequelize(
-      DEPLOY,
+      "postgresql://postgres:rhiHzJYXBufhEHmejhLq@containers-us-west-160.railway.app:6026/railway",
         { logging: false, native: false }
       );
 const basename = path.basename(__filename);
